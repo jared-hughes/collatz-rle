@@ -2,7 +2,6 @@ from conversions import *
 
 
 def contract_mutate(rle):
-    # print("contracting", rle)
     if -1 in rle:
         """
         Contract (-1) rule in a 1 spot
@@ -59,6 +58,9 @@ def collatz_step(rle):
 
     For reference, standard form is an RLE of odd length with positive entries
     """
+    assert min(rle) >= 1, "RLE must have positive integers"
+    assert len(rle) % 2 == 1, "RLE must have odd length"
+
     L = []
     for i in rle:
         L.extend([1, 1, i - 2])
@@ -94,4 +96,6 @@ def collatz_rle_print(rle):
 
 
 if __name__ == "__main__":
-    collatz_rle_print(num_to_rle(7))
+    for start in range(1, 20, 2):
+        collatz_rle_print(num_to_rle(start))
+        print()
